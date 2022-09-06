@@ -24,12 +24,16 @@ app.get("/", (req, res) => {
 
 //I
 app.get("/mongoose-store", (req, res) => {
-    res.send("index.ejs");
+    Product.find({}, (err, allProducts) => {
+        res.render("index.ejs", {
+            products: allProducts,
+        });
+    });
 });
 
 //N
 app.get("/mongoose-store/new", (req, res) => {
-    res.send("new.ejs");
+    res.render("new.ejs");
 });
 
 //D
@@ -38,14 +42,16 @@ app.get("/mongoose-store/new", (req, res) => {
 
 //C
 app.post("/mongoose-store", (req, res) => {
-    res.send("create!");
+    Product.create(req.body, (err, newProduct) => {
+        res.send(newProduct);
+    });
 });
 
 //E
 
 //S
 app.get("/mongoose-store/:id", (req, res) => {
-    res.send("show.ejs");
+    res.render("show.ejs");
 });
 
 // Database Connection Error/Success
