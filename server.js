@@ -51,7 +51,11 @@ app.post("/mongoose-store", (req, res) => {
 
 //S
 app.get("/mongoose-store/:id", (req, res) => {
-    res.render("show.ejs");
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render("show.ejs", {
+            product: foundProduct,
+        });
+    });
 });
 
 // Database Connection Error/Success
