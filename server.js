@@ -5,7 +5,7 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
-// const Log = require("./models/log.js");
+const Product = require("./models/product.js");
 
 // Database Connection
 mongoose.connect(process.env.DATABASE_URL, {
