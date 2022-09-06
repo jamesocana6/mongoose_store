@@ -37,13 +37,18 @@ app.get("/mongoose-store/new", (req, res) => {
 });
 
 //D
+app.delete("/mongoose-store/:id", (req, res) => {
+    Product.findByIdAndDelete(req.params.id, (err, deletedProduct) => {
+        res.redirect("/mongoose-store");
+    });
+});
 
 //U
 
 //C
 app.post("/mongoose-store", (req, res) => {
     Product.create(req.body, (err, newProduct) => {
-        res.send(newProduct);
+        res.redirect("/mongoose-store");
     });
 });
 
@@ -54,6 +59,7 @@ app.get("/mongoose-store/:id", (req, res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
         res.render("show.ejs", {
             product: foundProduct,
+            productQty: foundProduct.qty,
         });
     });
 });

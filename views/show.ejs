@@ -15,6 +15,13 @@
     <img src="<%=product.img%>" alt="<%=product.name%> image">
     <h2>$<%=product.price%></h2>
     <h2>Qty: <%=product.qty%></h2>
-        
+    <!-- thinking about how to edit the product quantity on click -->
+    <form action="/mongoose-store/<%=product._id%>?_method=PUT" method="POST">
+        <button>BUY</button>
+    </form>
+    <form action="/mongoose-store/<%=product._id%>?_method=DELETE" method="POST">
+        <button>DELETE ITEM</button>
+    </form>
+
 </body>
 </html>
