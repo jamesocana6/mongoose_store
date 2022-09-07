@@ -5,7 +5,7 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
-const Product = require("./models/product.js");
+const productController = require("./controllers/products.js");
 
 // Database Connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -16,52 +16,11 @@ mongoose.connect(process.env.DATABASE_URL, {
 // MIDDLEWARE 
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use("/mongoose-store", productController);
 
 // ROUTES
 app.get("/", (req, res) => {
     res.redirect("/mongoose-store");
-});
-
-//I
-app.get("/mongoose-store", (req, res) => {
-    Product.find({}, (err, allProducts) => {
-        res.render("index.ejs", {
-            products: allProducts,
-        });
-    });
-});
-
-//N
-app.get("/mongoose-store/new", (req, res) => {
-    res.render("new.ejs");
-});
-
-//D
-app.delete("/mongoose-store/:id", (req, res) => {
-    Product.findByIdAndDelete(req.params.id, (err, deletedProduct) => {
-        res.redirect("/mongoose-store");
-    });
-});
-
-//U
-
-//C
-app.post("/mongoose-store", (req, res) => {
-    Product.create(req.body, (err, newProduct) => {
-        res.redirect("/mongoose-store");
-    });
-});
-
-//E
-
-//S
-app.get("/mongoose-store/:id", (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) => {
-        res.render("show.ejs", {
-            product: foundProduct,
-            productQty: foundProduct.qty,
-        });
-    });
 });
 
 // Database Connection Error/Success
