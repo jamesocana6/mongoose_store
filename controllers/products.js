@@ -36,6 +36,27 @@ productRouter.delete("/:id", (req, res) => {
 });
 
 //U
+productRouter.put("/:id", (req, res) => {
+    Product.findByIdAndUpdate(req.params.id, req.body,
+        {
+            new: true,
+        },
+        (err, foundProduct) => {
+            res.redirect("/mongoose-store");
+    });
+});
+//BUY??????
+productRouter.put("/:id/buy", (req, res) => {
+    req.body.qty -= 1;
+    Product.findByIdAndUpdate(req.params.id, req.body,
+        {
+            new: true,
+        },
+        (err, foundProduct) => {
+            // foundProduct.qty = foundProduct.qty -1;
+            //res.redirect(`/mongoose-store/${req.params.id}`);
+    });
+});
 
 //C
 productRouter.post("/", (req, res) => {
@@ -46,8 +67,12 @@ productRouter.post("/", (req, res) => {
 
 //E
 productRouter.get("/:id/edit", (req, res) => {
-    res.render("edit.ejs");
-})
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render("edit.ejs", {
+            product: foundProduct,
+        });
+    });
+});
 
 //S
 productRouter.get("/:id", (req, res) => {

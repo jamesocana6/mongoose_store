@@ -13,7 +13,10 @@
     <h1>Store of Goods</h1>
     <ul>
         <%products.forEach(product => { %>
-            <li><a href="/mongoose-store/<%=product._id%>"><%=product.name%></a></li>
+            <li>
+                <a href="/mongoose-store/<%=product._id%>"><%=product.name%></a>
+                <a href="/mongoose-store/<%=product._id%>/edit">Edit</a>
+            </li>
         <% }) %>
     </ul>
         
