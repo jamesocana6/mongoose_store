@@ -6,6 +6,7 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
 const productController = require("./controllers/products.js");
+const userController = require("./controllers/users.js");
 
 // Database Connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -17,6 +18,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use("/mongoose-store", productController);
+app.use("/cart", userController);
 
 // ROUTES
 app.get("/", (req, res) => {

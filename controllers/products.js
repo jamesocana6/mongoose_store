@@ -45,7 +45,7 @@ productRouter.put("/:id", (req, res) => {
             res.redirect("/mongoose-store");
     });
 });
-//BUY??????
+//BUY?????? BUY!!!
 productRouter.put("/:id/buy", (req, res) => {
     //console.log(req.body.qty)
     Product.findByIdAndUpdate(req.params.id,
