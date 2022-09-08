@@ -1,3 +1,28 @@
+<style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    img {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    h1 {
+        text-transform: capitalize;
+    }
+    nav {
+        display: flex;
+        position: relative;
+        height: 50px;
+        background-color: chocolate;
+        text-align: left;
+        align-items: center;
+    }
+    a.back { 
+        text-decoration: none;
+        padding: 15px 15px 15px 15px;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +33,18 @@
 </head>
 <body>
     <nav>
-        <a href="/mongoose-store">Back to Store</a>
+        <a class="back" href="/mongoose-store">Back to Store</a>
     </nav>
+    <a href="/mongoose-store/<%=product._id%>/edit">Edit</a>
     <h1><%=product.name%></h1>
     <h2><%=product.description%></h2>
     <img src="<%=product.img%>" alt="<%=product.name%> image">
     <h2>$<%=product.price%></h2>
-    <h2>Qty: <%=product.qty%></h2>
+    <% if (product.qty > 0) { %>
+        <h2>Qty: <%=product.qty%></h2>
+    <% } else { %>    
+        <h2>Qty: OUT OF STOCK </h2>
+    <% } %>
     <!-- thinking about how to edit the product quantity on click -->
     <form action="/mongoose-store/<%=product._id%>/buy?_method=PUT" method="POST">
         <input style="max-width: 30px;" type="number" name="buy" value="1" min="1">

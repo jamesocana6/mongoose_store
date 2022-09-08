@@ -1,3 +1,45 @@
+<style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    h1 {
+        text-transform: capitalize;
+    }
+    nav {
+        display: flex;
+        position: relative;
+        height: 50px;
+        background-color: chocolate;
+        text-align: left;
+        align-items: center;
+        justify-content: space-between;
+    }
+    nav > a , nav > div > a { 
+        text-decoration: none;
+        padding: 15px 15px 15px 15px;
+    }
+    a {
+        text-decoration: none;
+    }
+    div.products {
+        display: flex;
+    }
+    div.product {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        border-radius: 5%;
+        margin: 10px;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +49,24 @@
     <title>Mongoose Store</title>
 </head>
 <body>
-    <div class="user">
-        <a href="/cart/new">New User</a>
-    </div>
     <nav>
-        <a href="/mongoose-store/new">Add a new Product</a>
+        <a href="/mongoose-store/new">New Product</a>
         <a href="/cart">Shopping Cart</a>
+        <div class="user">
+            <a href="/cart/new">New User</a>
+        </div>
     </nav>
     <h1>Store of Goods</h1>
-    <ul>
+    <div class="products">
         <%products.forEach(product => { %>
-            <li>
-                <a href="/mongoose-store/<%=product._id%>"><%=product.name%></a>
-                <a href="/mongoose-store/<%=product._id%>/edit">Edit</a>
-            </li>
+            <div class="product">
+                <a href="/mongoose-store/<%=product._id%>"><img src="<%=product.img%>"><br>
+                    <%=product.name%><br>
+                    $<%=product.price%>
+                </a><br>
+            </div>
         <% }) %>
-    </ul>
+    </div>
         
 </body>
 </html>

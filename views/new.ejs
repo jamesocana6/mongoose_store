@@ -1,3 +1,34 @@
+<style>
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    h1 {
+        text-transform: capitalize;
+    }
+    nav {
+        display: flex;
+        position: relative;
+        height: 50px;
+        background-color: chocolate;
+        text-align: left;
+        align-items: center;
+        justify-content: space-between;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        background-color: lightgray;
+        padding: 15px 0;
+    }
+    nav > a , nav > div > a { 
+        text-decoration: none;
+        padding: 15px 15px 15px 15px;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +38,10 @@
     <title>Store of Goods</title>
 </head>
 <body>
+    <nav>
+        <a class="back" href="/mongoose-store">Back to Store</a>
+    </nav>
+
     <h1>New Product</h1>
     <form action="/mongoose-store" method="POST">
         Name: <input type="text" name="name"><br>

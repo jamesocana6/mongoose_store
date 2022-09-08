@@ -1,9 +1,10 @@
 const express = require("express");
 const productRouter = express.Router();
 const Product = require("../models/product.js");
-const User = require("../models/user.js");
+///const User = require("../models/user.js");
 //trying to show username at top right
-// const userActive = User.findById
+// const userActive = User.find({})
+//console.log(userActive)
 const productSeed = require("../models/productSeed.js");
 
 //ROUTES
