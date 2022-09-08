@@ -17,6 +17,7 @@
     <h2>Qty: <%=product.qty%></h2>
     <!-- thinking about how to edit the product quantity on click -->
     <form action="/mongoose-store/<%=product._id%>/buy?_method=PUT" method="POST">
+        <input style="max-width: 30px;" type="number" name="buy" value="1" min="1">
         <button>BUY</button>
     </form>
     <form action="/mongoose-store/<%=product._id%>?_method=DELETE" method="POST">

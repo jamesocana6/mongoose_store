@@ -1,6 +1,7 @@
 const express = require("express");
 const productRouter = express.Router();
 const Product = require("../models/product.js");
+const User = require("../models/user.js")
 const productSeed = require("../models/productSeed.js");
 
 //ROUTES
@@ -45,18 +46,20 @@ productRouter.put("/:id", (req, res) => {
             res.redirect("/mongoose-store");
     });
 });
+
 //BUY?????? BUY!!!
 productRouter.put("/:id/buy", (req, res) => {
-    //console.log(req.body.qty)
+    //req.body.buy will be the value put in next to the buy button
+    //console.log(req.body.buy)
     Product.findByIdAndUpdate(req.params.id,
         {
             new: true,
         },
         (err, foundProduct) => {
             // console.log(foundProduct.qty)
-            foundProduct.qty = foundProduct.qty -1;
-            console.log(foundProduct.qty)
-            // foundProduct.save();
+            foundProduct.qty = foundProduct.qty - req.body.buy;
+            //console.log(foundProduct.qty)
+            foundProduct.save();
             res.redirect(`/mongoose-store/${req.params.id}`);
         });
 });
