@@ -1,7 +1,9 @@
 const express = require("express");
 const productRouter = express.Router();
 const Product = require("../models/product.js");
-const User = require("../models/user.js")
+const User = require("../models/user.js");
+//trying to show username at top right
+// const userActive = User.findById
 const productSeed = require("../models/productSeed.js");
 
 //ROUTES
@@ -56,6 +58,7 @@ productRouter.put("/:id/buy", (req, res) => {
             new: true,
         },
         (err, foundProduct) => {
+            //Here we will find user and then update.
             // console.log(foundProduct.qty)
             foundProduct.qty = foundProduct.qty - req.body.buy;
             //console.log(foundProduct.qty)
